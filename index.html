@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Ishika 🎂💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== FLOATING PARTICLES ===== -->
+  <div id="particles-container"></div>
+
+  <!-- ===== FLOATING TEXT ===== -->
+  <div class="floating-texts" id="floating-texts"></div>
+
+  <!-- ===== MUSIC CONTROL ===== -->
+  <div class="music-control" id="musicControl" onclick="toggleMusic()">
+    <span id="musicIcon">🎵</span>
+    <span id="musicLabel">Play Music</span>
+  </div>
+
+  <!-- ===== LANDING SECTION ===== -->
+  <section id="landing" class="section-landing">
+    <div class="landing-content">
+      <p class="landing-subtitle">A little something just for you...</p>
+      <div class="heart-container" id="heartContainer" onclick="openHeart()">
+        <div class="heart-shape closed" id="mainHeart">
+          <div class="heart-inner-glow"></div>
+          <span class="heart-emoji">💕</span>
+        </div>
+        <div class="click-hint">
+          <span class="hint-arrow">✨</span>
+          <span>Click to open</span>
+          <span class="hint-arrow">✨</span>
+        </div>
+      </div>
+      <p class="landing-name">For my <em>Ishika</em> 🌸</p>
+    </div>
+  </section>
+
+  <!-- ===== HEART OPEN / BIRTHDAY SECTION ===== -->
+  <section id="birthdaySection" class="section-birthday hidden">
+    <div class="birthday-inner">
+
+      <!-- Birthday Title -->
+      <div class="birthday-title-wrap">
+        <h1 class="birthday-title">HAPPIEST 20th BIRTHDAY</h1>
+        <h1 class="birthday-title-name">ISHIKAAA 🫶🏻🫂💋</h1>
+      </div>
+
+      <!-- Birthday Message -->
+      <p class="birthday-message">
+        I hope your day is filled with happiness, laughter and everything you love even in my absence
+        and your 21st year gets brighter like you make my every day bright just by being in it.<br><br>
+        <em>Enjoy your day cutesy instead of sleeping all day.</em> 😄
+      </p>
+
+      <!-- Heart Photo Collage -->
+      <div class="collage-section">
+        <h2 class="collage-heading">Our Little Universe 💫</h2>
+        <div class="heart-collage" id="heartCollage">
+          <div class="photo-wrapper p1" onclick="openPhotoModal(0)">
+            <img src="images/photo1.jpg" alt="Memory 1" loading="lazy"/>
+            <div class="photo-overlay"><span>👆 Click</span></div>
+          </div>
+          <div class="photo-wrapper p2" onclick="openPhotoModal(1)">
+            <img src="images/photo2.jpg" alt="Memory 2" loading="lazy"/>
+            <div class="photo-overlay"><span>👆 Click</span></div>
+          </div>
+          <div class="photo-wrapper p3" onclick="openPhotoModal(2)">
+            <img src="images/photo3.jpg" alt="Memory 3" loading="lazy"/>
+            <div class="photo-overlay"><span>👆 Click</span></div>
+          </div>
+          <div class="photo-wrapper p4" onclick="openPhotoModal(3)">
+            <img src="images/photo4.jpg" alt="Memory 4" loading="lazy"/>
+            <div class="photo-overlay"><span>👆 Click</span></div>
+          </div>
+        </div>
+        <p class="collage-hint">✨ Tap each photo to reveal a memory ✨</p>
+      </div>
+
+      <div class="scroll-hint">Scroll down for a love letter 💌 ↓</div>
+
+    </div>
+  </section>
+
+
+  <!-- ===== SURPRISE SECTION ===== -->
+  <!-- ===== SURPRISE SECTION ===== -->
+<section id="surpriseSection" class="section-surprise hidden">
+  <div class="surprise-inner">
+    <button class="surprise-btn" id="surpriseBtn" onclick="triggerSurprise()">
+      Click for Surprise 💌
+    </button>
+
+    <div class="surprise-message hidden" id="surpriseMessage">
+      <div class="surprise-hearts" id="surpriseHearts"></div>
+
+      <div class="surprise-text">
+        <p>
+          I don't even know where to begin when it comes to you, because every little thing about you feels special to me. Loving you isn't something I have to try to do—it just happens so naturally. You've brought so much happiness into my life. Your smile can instantly make my whole day better, and the way you talk, laugh and giggle, and even the way you get a little annoyed sometimes. I love all of it more than you can even imagine.
+        </p>
+
+        <p>
+          Being with you feels like home, like I've finally found a place where I truly belong. I find myself thinking about you at random times, smiling for no reason, just because you crossed my mind🙈. You've become such an important part of my life so quickly, and honestly, I wouldn't change a single thing about us. You're not just my girlfriend, you're my peace, my comfort, my happiness, and my favorite person in this entire world🩷🌏.
+        </p>
+
+        <p>
+          I want to be there for you in every moment, whether it's the best days or the tough ones. I want to make you smile when you're sad, hold you tight and close when you need comfort🫂, and remind you every single day how incredibly special you are for me. I don't know what I did to deserve someone like you, but I'm so grateful that I have you. And no matter what happens, I promise I'll always choose you, care for you, and love you with everything I have HABUU😋.
+        </p>
+
+        <p>
+          I want you in my life BUBU and I can't even live a single day without you. I really love youuu cutuuuu🫶🏻🧿💌
+        </p>
+      </div>
+
+      <p class="surprise-sub">
+        Happy Birthday, my love. Every day with you is a gift. 🌸
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- ===== PHOTO MODAL ===== -->
+  <div class="modal-overlay hidden" id="photoModal" onclick="closePhotoModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closePhotoModal()">✕</button>
+      <img id="modalImg" src="" alt="Memory"/>
+      <div class="modal-caption" id="modalCaption"></div>
+    </div>
+  </div>
+
+  <!-- ===== AUDIO ===== -->
+  <!-- Royalty-free romantic piano — music plays when user clicks the button -->
+  <audio id="bgMusic" loop crossorigin="anonymous" preload="none">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

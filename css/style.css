@@ -1,0 +1,719 @@
+/* =============================================
+   GLOBAL RESET & BASE STYLES
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink-deep:    #e8678a;
+  --pink-mid:     #f49bb1;
+  --pink-light:   #fce4ec;
+  --pink-pale:    #fff0f5;
+  --rose:         #f06292;
+  --cream:        #fff8f0;
+  --gold:         #f8c8a0;
+  --text-dark:    #5a2a3a;
+  --text-mid:     #8b4566;
+  --text-light:   #c47a9a;
+  --shadow-pink:  rgba(232, 103, 138, 0.4);
+  --glow-pink:    rgba(244, 155, 177, 0.6);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(255, 182, 193, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(255, 192, 203, 0.18) 0%, transparent 60%),
+    linear-gradient(135deg, #fff0f5 0%, #fce4ec 40%, #fdf2f8 70%, #fff0f5 100%);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* =============================================
+   FLOATING PARTICLES
+   ============================================= */
+#particles-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  font-size: clamp(10px, 2vw, 22px);
+  animation: floatUp linear infinite;
+  opacity: 0;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* =============================================
+   FLOATING LOVE TEXTS
+   ============================================= */
+.floating-texts {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.float-text {
+  position: absolute;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(11px, 2.5vw, 18px);
+  color: var(--pink-mid);
+  opacity: 0;
+  white-space: nowrap;
+  animation: floatText linear infinite;
+  text-shadow: 0 0 8px var(--glow-pink);
+}
+
+@keyframes floatText {
+  0%   { transform: translateY(110vh) translateX(0px); opacity: 0; }
+  15%  { opacity: 0.6; }
+  85%  { opacity: 0.4; }
+  100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+}
+
+/* =============================================
+   MUSIC CONTROL
+   ============================================= */
+.music-control {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 9999;
+  background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 18px;
+  display: flex; align-items: center; gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px var(--shadow-pink);
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulseBtn 2.5s ease-in-out infinite;
+}
+
+.music-control:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 24px var(--shadow-pink);
+}
+
+@keyframes pulseBtn {
+  0%, 100% { box-shadow: 0 4px 18px var(--shadow-pink); }
+  50%       { box-shadow: 0 4px 28px rgba(232,103,138,0.7); }
+}
+
+/* =============================================
+   SECTION BASE
+   ============================================= */
+section {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.hidden { display: none !important; }
+
+/* =============================================
+   LANDING SECTION
+   ============================================= */
+.section-landing {
+  flex-direction: column;
+  text-align: center;
+  background: transparent;
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.landing-subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(18px, 4vw, 28px);
+  color: var(--text-mid);
+  opacity: 0;
+  animation: fadeInDown 1.2s 0.4s ease forwards;
+}
+
+.landing-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(20px, 4.5vw, 32px);
+  color: var(--text-mid);
+  opacity: 0;
+  animation: fadeInUp 1.2s 0.8s ease forwards;
+}
+
+.landing-name em { color: var(--pink-deep); font-style: italic; }
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =============================================
+   HEART SHAPE (LANDING)
+   ============================================= */
+.heart-container {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.heart-shape {
+  position: relative;
+  width: clamp(200px, 50vw, 320px);
+  height: clamp(200px, 50vw, 320px);
+  background: linear-gradient(135deg, var(--pink-deep), var(--rose), #f48fb1);
+  transform: rotate(-45deg);
+  border-radius: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s;
+  animation: heartPulse 2s ease-in-out infinite;
+  box-shadow: 0 8px 40px var(--shadow-pink);
+}
+
+.heart-shape::before,
+.heart-shape::after {
+  content: '';
+  position: absolute;
+  width: 100%; height: 100%;
+  background: inherit;
+  border-radius: 50%;
+}
+.heart-shape::before { top: -50%; left: 0; }
+.heart-shape::after  { top: 0; left: 50%; }
+
+@keyframes heartPulse {
+  0%, 100% { transform: rotate(-45deg) scale(1);    box-shadow: 0 8px 40px var(--shadow-pink); }
+  50%       { transform: rotate(-45deg) scale(1.07); box-shadow: 0 12px 60px rgba(240,98,146,0.6); }
+}
+
+.heart-inner-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 40% 40%, rgba(255,255,255,0.4) 0%, transparent 70%);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.heart-emoji {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  font-size: clamp(36px, 8vw, 64px);
+  z-index: 2;
+}
+
+.click-hint {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(16px, 3.5vw, 22px);
+  color: var(--text-mid);
+  animation: blinkFade 2s ease-in-out infinite;
+}
+
+@keyframes blinkFade {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.hint-arrow { animation: bounce 1.2s ease-in-out infinite; display: inline-block; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* Heart open animation */
+.heart-shape.opening {
+  animation: heartOpen 0.8s ease forwards !important;
+}
+@keyframes heartOpen {
+  0%   { transform: rotate(-45deg) scale(1); }
+  30%  { transform: rotate(-45deg) scale(1.2); }
+  60%  { transform: rotate(-45deg) scale(0.9); }
+  100% { transform: rotate(-45deg) scale(20); opacity: 0; }
+}
+
+/* =============================================
+   BIRTHDAY SECTION
+   ============================================= */
+.section-birthday {
+  flex-direction: column;
+  text-align: center;
+  background: transparent;
+  padding: 60px 20px 40px;
+  animation: sectionFadeIn 0.8s ease forwards;
+}
+
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.birthday-inner { max-width: 900px; width: 100%; }
+
+.birthday-title-wrap {
+  margin-bottom: 32px;
+}
+
+.birthday-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 6vw, 52px);
+  font-weight: 700;
+  color: var(--pink-deep);
+  text-shadow: 0 2px 20px var(--shadow-pink);
+  letter-spacing: 2px;
+  line-height: 1.2;
+  animation: glowText 2.5s ease-in-out infinite;
+}
+
+.birthday-title-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(28px, 7vw, 60px);
+  font-weight: 700;
+  color: var(--rose);
+  text-shadow: 0 0 20px rgba(240, 98, 146, 0.6);
+  letter-spacing: 1px;
+  animation: glowText 2.5s ease-in-out infinite 0.5s;
+}
+
+@keyframes glowText {
+  0%, 100% { text-shadow: 0 2px 20px var(--shadow-pink), 0 0 40px rgba(240,98,146,0.3); }
+  50%       { text-shadow: 0 2px 30px var(--shadow-pink), 0 0 60px rgba(240,98,146,0.6); }
+}
+
+.birthday-message {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(14px, 2.5vw, 18px);
+  line-height: 1.9;
+  color: var(--text-mid);
+  max-width: 640px;
+  margin: 0 auto 48px;
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  border: 1px solid rgba(244,155,177,0.4);
+  box-shadow: 0 4px 30px rgba(244,155,177,0.2);
+  backdrop-filter: blur(6px);
+}
+
+.birthday-message em {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.15em;
+  color: var(--pink-deep);
+}
+
+/* =============================================
+   HEART-SHAPED PHOTO COLLAGE
+   ============================================= */
+.collage-section {
+  margin-top: 20px;
+}
+
+.collage-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(22px, 5vw, 38px);
+  color: var(--text-mid);
+  margin-bottom: 30px;
+}
+
+/* Heart collage using CSS clip-path heart on outer wrapper,
+   with 4 photos inside a grid */
+.heart-collage {
+  position: relative;
+  width: clamp(280px, 80vw, 560px);
+  height: clamp(270px, 76vw, 530px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 6px;
+  clip-path: url(#heartClip);
+  /* Fallback with border-radius for browsers not supporting SVG clip */
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* SVG heart clip path injected via JS */
+.photo-wrapper {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--pink-light);
+}
+
+.photo-wrapper img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.photo-wrapper:hover img { transform: scale(1.08); }
+
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(232,103,138,0.7) 0%, transparent 60%);
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.photo-wrapper:hover .photo-overlay,
+.photo-wrapper:active .photo-overlay { opacity: 1; }
+
+.photo-overlay span {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.collage-hint {
+  margin-top: 18px;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(14px, 3vw, 20px);
+  color: var(--text-light);
+  animation: blinkFade 2.5s ease-in-out infinite;
+}
+
+/* =============================================
+   LOVE LETTER SECTION
+   ============================================= */
+.section-letter {
+  flex-direction: column;
+  padding: 60px 20px;
+  animation: sectionFadeIn 0.8s ease forwards;
+}
+
+.letter-container {
+  max-width: 720px;
+  width: 100%;
+}
+
+.letter-card {
+  background: linear-gradient(160deg, rgba(255,255,255,0.95), rgba(255,240,245,0.95));
+  border-radius: 24px;
+  padding: clamp(28px, 6vw, 56px) clamp(24px, 6vw, 52px);
+  border: 1.5px solid rgba(244,155,177,0.5);
+  box-shadow:
+    0 8px 40px rgba(244,155,177,0.25),
+    0 0 0 6px rgba(252,228,236,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  animation: letterGlow 4s ease-in-out infinite;
+}
+
+@keyframes letterGlow {
+  0%, 100% { box-shadow: 0 8px 40px rgba(244,155,177,0.25), 0 0 0 6px rgba(252,228,236,0.4), inset 0 1px 0 rgba(255,255,255,0.8); }
+  50%       { box-shadow: 0 8px 60px rgba(232,103,138,0.35), 0 0 0 8px rgba(252,228,236,0.6), inset 0 1px 0 rgba(255,255,255,0.8); }
+}
+
+.letter-card::before {
+  content: '';
+  position: absolute;
+  top: -40%; left: -40%;
+  width: 80%; height: 80%;
+  background: radial-gradient(circle, rgba(255,192,203,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.letter-decoration {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  margin: 10px 0;
+}
+.letter-decoration.top  { margin-bottom: 20px; }
+.letter-decoration.bottom { margin-top: 24px; }
+
+.letter-salutation {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(20px, 4vw, 30px);
+  color: var(--pink-deep);
+  margin-bottom: 24px;
+}
+
+.letter-body p {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(14px, 2.2vw, 16.5px);
+  line-height: 2;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.letter-sign {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(18px, 3.5vw, 26px);
+  color: var(--rose);
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* =============================================
+   SURPRISE SECTION
+   ============================================= */
+.section-surprise {
+  flex-direction: column;
+  padding: 60px 20px;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.surprise-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.surprise-btn {
+  background: linear-gradient(135deg, var(--pink-deep), var(--rose), #ec407a);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 18px 44px;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(18px, 4vw, 26px);
+  cursor: pointer;
+  box-shadow: 0 6px 30px var(--shadow-pink);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: pulseBtn 2s ease-in-out infinite;
+  letter-spacing: 0.5px;
+}
+
+.surprise-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 40px rgba(232,103,138,0.7);
+}
+
+.surprise-message {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  animation: surprisePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes surprisePop {
+  0%   { transform: scale(0.3); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.surprise-hearts {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.s-heart {
+  position: absolute;
+  font-size: clamp(16px, 4vw, 36px);
+  animation: surpriseHeart 2s ease forwards;
+}
+@keyframes surpriseHeart {
+  0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-80vh) scale(0.5) rotate(360deg); opacity: 0; }
+}
+
+/* ✨ Romantic cursive surprise text */
+.surprise-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;        /* smaller text */
+  line-height: 1.7;
+  color: #ff4d6d;
+  text-align: center;
+  padding: 15px 20px;
+  letter-spacing: 0.5px;
+}
+
+/* spacing between paragraphs */
+.surprise-text p {
+  margin-bottom: 15px;
+}
+
+.surprise-sub {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(16px, 3.5vw, 24px);
+  color: var(--text-mid);
+}
+
+/* =============================================
+   PHOTO MODAL
+   ============================================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(90, 42, 58, 0.75);
+  z-index: 10000;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-card {
+  background: linear-gradient(160deg, #fff, #fce4ec);
+  border-radius: 24px;
+  padding: 12px;
+  max-width: min(90vw, 480px);
+  width: 100%;
+  box-shadow: 0 20px 80px rgba(90,42,58,0.4);
+  position: relative;
+  animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes modalPop {
+  0%   { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.modal-card img {
+  width: 100%;
+  max-height: 55vh;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.modal-caption {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(14px, 3vw, 20px);
+  color: var(--text-mid);
+  text-align: center;
+  padding: 16px 12px 10px;
+  line-height: 1.7;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px; right: 12px;
+  background: var(--pink-deep);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px; height: 32px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 1;
+}
+.modal-close:hover { background: var(--rose); transform: scale(1.1); }
+
+/* =============================================
+   SVG HEART CLIP DEF (hidden)
+   ============================================= */
+.svg-defs { position: absolute; width: 0; height: 0; }
+
+/* =============================================
+   SECTION DIVIDER / SCROLL INDICATORS
+   ============================================= */
+.section-birthday::before,
+.section-letter::before,
+.section-surprise::before {
+  content: '💕 · · · 💕 · · · 💕';
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: var(--pink-mid);
+  letter-spacing: 6px;
+  margin-bottom: 40px;
+  opacity: 0.7;
+}
+
+/* =============================================
+   CURSOR SPARKLE
+   ============================================= */
+.cursor-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  font-size: 18px;
+  animation: sparkleOut 0.8s ease forwards;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+@keyframes sparkleOut {
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -120%) scale(0.3); }
+}
+
+/* =============================================
+   SECTION SCROLL INDICATOR
+   ============================================= */
+.scroll-hint {
+  text-align: center;
+  margin-top: 48px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 18px;
+  color: var(--text-light);
+  animation: blinkFade 2s ease-in-out infinite;
+}
+
+/* =============================================
+   SCROLLBAR STYLING
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--pink-pale); }
+::-webkit-scrollbar-thumb { background: var(--pink-mid); border-radius: 10px; }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 480px) {
+  .birthday-message { padding: 20px 18px; }
+  .letter-card { padding: 24px 18px; }
+  .heart-collage { gap: 4px; }
+  .surprise-btn { padding: 16px 32px; }
+}
